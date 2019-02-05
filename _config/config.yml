@@ -1,0 +1,11 @@
+---
+Name: silverstripe-rejb
+---
+
+SilverStripe\SiteConfig\SiteConfig:
+  extensions:
+    - BiffBangPow\SilverStripeREJB\Extensions\JobBoardSiteConfigExtension
+
+SilverStripe\CMS\Controllers\ContentController:
+  extensions:
+    - BiffBangPow\SilverStripeREJB\Extensions\JobBoardContentControllerExtension

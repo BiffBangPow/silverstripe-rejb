@@ -1,0 +1,1 @@
+<div id="REJB-job-board-$ID" class="REJB-job-board"></div>
