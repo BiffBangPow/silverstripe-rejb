@@ -40,12 +40,4 @@ class JobBoardSiteConfigExtension extends DataExtension
             return Director::absoluteBaseURL() . $jobBoardURLPath;
         }
     }
-
-    /**
-     * @return string
-     */
-    public function getJobBoardURLPath()
-    {
-        return Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'job_board_url_path');
-    }
 }
