@@ -26,4 +26,26 @@ class JobBoardSiteConfigExtension extends DataExtension
             TextField::create('PrivacyPolicyURLPath'),
         ]);
     }
+
+    /**
+     * @return string
+     */
+    public function getJobBoardFullURL()
+    {
+        $jobBoardURLPath = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'job_board_url_path');
+
+        if ($jobBoardURLPath === '/') {
+            return Director::absoluteBaseURL();
+        } else {
+            return Director::absoluteBaseURL() . $jobBoardURLPath;
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getJobBoardURLPath()
+    {
+        return Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'job_board_url_path');
+    }
 }
