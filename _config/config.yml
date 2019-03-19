@@ -10,3 +10,7 @@ SilverStripe\CMS\Controllers\ContentController:
   extensions:
     - BiffBangPow\SilverStripeREJB\Extensions\JobBoardContentControllerExtension
     - BiffBangPow\SilverStripeREJB\Extensions\JobBoardURLExtension
+
+Wilr\GoogleSitemaps\Control\GoogleSitemapController:
+  extensions:
+    - JobBoardSitemapExtension
