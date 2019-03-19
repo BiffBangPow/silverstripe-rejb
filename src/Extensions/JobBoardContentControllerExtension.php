@@ -99,7 +99,7 @@ class JobBoardContentControllerExtension extends Extension
         $siteConfig = SiteConfig::current_site_config();
 
         $config = sprintf(
-            'var rejbConfig = {"apiBaseUrl":"%s","brandSlug":"%s","privacyPolicyUrlPath":"%s","jobBoardUrlPath":"%s","style":%s,"analyticsID":%s}',
+            'var rejbConfig = {"apiBaseUrl":"%s","brandSlug":"%s","privacyPolicyUrlPath":"%s","jobBoardUrlPath":"%s","style":%s,"analyticsId":%s}',
             $apiBaseURL,
             $brandSlug,
             $siteConfig->PrivacyPolicyURLPath,
