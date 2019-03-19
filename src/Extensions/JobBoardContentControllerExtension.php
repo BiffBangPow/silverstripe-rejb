@@ -94,16 +94,18 @@ class JobBoardContentControllerExtension extends Extension
         $jobBoardURLPath = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'job_board_url_path');
         $apiBaseURL = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'api_base_url');
         $brandSlug = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'brand_slug');
+        $analyticsID = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'analytics_id');
 
         $siteConfig = SiteConfig::current_site_config();
 
         $config = sprintf(
-            'var rejbConfig = {"apiBaseUrl":"%s","brandSlug":"%s","privacyPolicyUrlPath":"%s","jobBoardUrlPath":"%s","style":%s}',
+            'var rejbConfig = {"apiBaseUrl":"%s","brandSlug":"%s","privacyPolicyUrlPath":"%s","jobBoardUrlPath":"%s","style":%s,"analyticsID":%s}',
             $apiBaseURL,
             $brandSlug,
             $siteConfig->PrivacyPolicyURLPath,
             $jobBoardURLPath,
-            json_encode($styleConfig)
+            json_encode($styleConfig),
+            $analyticsID
         );
 
         return $config;
