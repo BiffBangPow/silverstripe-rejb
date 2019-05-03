@@ -14,6 +14,7 @@ class JobBoardSiteConfigExtension extends DataExtension
      */
     private static $db = [
         'PrivacyPolicyURLPath' => DBVarchar::class,
+        'ItemsPerPageDefault'  => DBVarchar::class,
     ];
 
     /**
@@ -24,6 +25,11 @@ class JobBoardSiteConfigExtension extends DataExtension
     {
         $fields->addFieldsToTab('Root.JobBoard', [
             TextField::create('PrivacyPolicyURLPath'),
+            DropdownField::create('ItemsPerPageDefault', 'Items Per Page Default', [
+                '10' => '10',
+                '20' => '20',
+                '50' => '50'
+            ])
         ]);
     }
 
