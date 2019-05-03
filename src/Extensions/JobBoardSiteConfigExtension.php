@@ -4,6 +4,7 @@ namespace BiffBangPow\SilverStripeREJB\Extensions;
 
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\DropdownField;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\FieldType\DBVarchar;
 
