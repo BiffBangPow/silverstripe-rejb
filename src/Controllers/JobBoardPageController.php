@@ -5,6 +5,7 @@ namespace BiffBangPow\SilverStripeREJB\Controllers;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\Control\HTTPRequest;
 use PageController;
+use SilverStripe\SiteConfig\SiteConfig;
 use Stringy\Stringy;
 use SilverStripe\Core\Config\Config;
 
@@ -30,6 +31,18 @@ class JobBoardPageController extends PageController
             $metaTitle = $titleString->titleize()->__toString();
         }
 
-        return $this->renderWith(['JobBoard', 'Page'], ['MetaTitle' => $metaTitle]);
+        $siteConfig = SiteConfig::current_site_config();
+
+        return $this->renderWith(
+            [
+                'JobBoard',
+                'Page',
+            ],
+            [
+                'MetaTitle'       => $metaTitle,
+                'Title'           => $metaTitle,
+                'MetaDescription' => $siteConfig->JobBoardShareDescription,
+            ]
+        );
     }
 }
