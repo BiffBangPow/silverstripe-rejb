@@ -1,0 +1,1 @@
+<div id="REJB-job-alerts-$ID" class="REJB-job-alerts" data-show-title="$ShowTitle"></div>
