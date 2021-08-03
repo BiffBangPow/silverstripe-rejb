@@ -4,13 +4,8 @@ Name: silverstripe-rejb
 
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
-    - BiffBangPow\SilverStripeREJB\Extensions\JobBoardSiteConfigExtension
-
-SilverStripe\CMS\Controllers\ContentController:
-  extensions:
-    - BiffBangPow\SilverStripeREJB\Extensions\JobBoardContentControllerExtension
-    - BiffBangPow\SilverStripeREJB\Extensions\JobBoardURLExtension
+    jobboardsiteconfig: BiffBangPow\SilverStripeREJB\Extensions\JobBoardSiteConfigExtension
 
 Wilr\GoogleSitemaps\Control\GoogleSitemapController:
   extensions:
-    - JobBoardSitemapExtension
+    sitemap: JobBoardSitemapExtension

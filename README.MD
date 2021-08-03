@@ -13,6 +13,15 @@ BiffBangPow\SilverStripeREJB\SilverstripeREJB:
   brand_slug: "brand-slug-here"
 ~~~
 
+You will need to add the following extensions to anything that needs to output some of the job widgets, for example to add to every page:
+
+~~~
+SilverStripe\CMS\Controllers\ContentController:
+extensions:
+  jobboardcontent: BiffBangPow\SilverStripeREJB\Extensions\JobBoardContentControllerExtension
+  jobboardurl: BiffBangPow\SilverStripeREJB\Extensions\JobBoardURLExtension
+~~~
+
 You will also need to direct all requests to the job board to the job board controller, add this to your `mysite.yml`, replace `/jobs` with the url you want your job board to reside at, this should be the same `job_board_url_path` you set above
 
 ~~~
