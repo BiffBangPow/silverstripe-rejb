@@ -2,6 +2,8 @@
 
 namespace BiffBangPow\SilverStripeREJB\Controllers;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use SilverStripe\Control\Director;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\Control\HTTPRequest;
@@ -28,6 +30,11 @@ class JobBoardPageController extends PageController
 
         if ($request->getURL() !== $jobBoardURLPath) {
             $urlParts = explode('/', $request->getURL());
+
+            if ($this->checkJobExists(end($urlParts)) !== true) {
+                return $this->httpError(404);
+            }
+
             $title = str_replace('-', ' ', end($urlParts));
             $titleString = new Stringy($title);
             $metaTitle = $titleString->titleize()->__toString();
@@ -47,5 +54,36 @@ class JobBoardPageController extends PageController
                 'AbsoluteLink'    => $absoluteLink,
             ]
         );
+    }
+
+    /**
+     * @param $slug
+     * @return bool
+     * @throws GuzzleException
+     */
+    public function checkJobExists($slug)
+    {
+        $jobBoardURLPath = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'job_board_url_path');
+        $apiBaseURL = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'api_base_url');
+        $brandSlug = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'brand_slug');
+
+        $now = new \DateTime();
+        $now->format('YYYY-MM-DD');
+
+        $jobURL = sprintf(
+            '%s/api/brands/%s/jobs?expiryDate[strictly_after]=%s&slug=%s',
+            $apiBaseURL,
+            $brandSlug,
+            $now->format('Y-m-d'),
+            $brandSlug . '-' . $slug
+        );
+
+        $client = new Client(['base_uri' => $jobURL]);
+        $response = $client->request('GET');
+        $arrayResponse = json_decode((string)$response->getBody(), true);
+
+        $jobs = $arrayResponse['hydra:member'];
+
+        return (count($jobs) > 0);
     }
 }
