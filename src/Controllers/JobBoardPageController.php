@@ -2,6 +2,7 @@
 
 namespace BiffBangPow\SilverStripeREJB\Controllers;
 
+use SilverStripe\Control\Director;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\Control\HTTPRequest;
 use PageController;
@@ -23,6 +24,7 @@ class JobBoardPageController extends PageController
         $metaTitle = 'Jobs';
 
         $jobBoardURLPath = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'job_board_url_path');
+        $absoluteLink = Director::absoluteBaseURL() . $request->getURL();
 
         if ($request->getURL() !== $jobBoardURLPath) {
             $urlParts = explode('/', $request->getURL());
@@ -42,6 +44,7 @@ class JobBoardPageController extends PageController
                 'MetaTitle'       => $metaTitle,
                 'Title'           => $metaTitle,
                 'MetaDescription' => $siteConfig->JobBoardShareDescription,
+                'AbsoluteLink'    => $absoluteLink,
             ]
         );
     }
