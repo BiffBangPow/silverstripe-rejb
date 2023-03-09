@@ -28,7 +28,7 @@ class JobBoardPageController extends PageController
         $jobBoardURLPath = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'job_board_url_path');
         $absoluteLink = Director::absoluteBaseURL() . $request->getURL();
 
-        if ($request->getURL() !== $jobBoardURLPath) {
+        if ($request->getURL() !== ltrim($jobBoardURLPath, '/')) {
             $urlParts = explode('/', $request->getURL());
 
             if ($this->checkJobExists(end($urlParts)) !== true) {
