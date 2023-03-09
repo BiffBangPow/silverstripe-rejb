@@ -9,3 +9,9 @@ SilverStripe\SiteConfig\SiteConfig:
 Wilr\GoogleSitemaps\Control\GoogleSitemapController:
   extensions:
     sitemap: JobBoardSitemapExtension
+
+SilverStripe\Core\Injector\Injector:
+  Psr\SimpleCache\CacheInterface.rejbcache:
+    factory: SilverStripe\Core\Cache\CacheFactory
+    constructor:
+      namespace: "rejbcache"

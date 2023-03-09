@@ -11,6 +11,8 @@ use PageController;
 use SilverStripe\SiteConfig\SiteConfig;
 use Stringy\Stringy;
 use SilverStripe\Core\Config\Config;
+use Psr\SimpleCache\CacheInterface;
+use SilverStripe\Core\Injector\Injector;
 
 /**
  * @package BiffBangPow\SilverStripeREJB
@@ -63,7 +65,12 @@ class JobBoardPageController extends PageController
      */
     public function checkJobExists($slug)
     {
-        $jobBoardURLPath = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'job_board_url_path');
+        $cache = Injector::inst()->get(CacheInterface::class . '.rejbcache');
+
+        if ($cache->has($slug) === true) {
+            return true;
+        }
+
         $apiBaseURL = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'api_base_url');
         $brandSlug = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'brand_slug');
 
@@ -84,6 +91,11 @@ class JobBoardPageController extends PageController
 
         $jobs = $arrayResponse['hydra:member'];
 
-        return (count($jobs) > 0);
+        if (count($jobs) > 0) {
+            $cache->set($slug, 1, 1200); // cache for 20 mins
+            return true;
+        } else {
+            return false;
+        }
     }
 }
