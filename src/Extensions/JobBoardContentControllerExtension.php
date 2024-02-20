@@ -69,13 +69,13 @@ class JobBoardContentControllerExtension extends Extension
         } elseif (Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'alternate_cdn') !== null) {
             $cdnBaseURL = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'alternate_cdn');
             Requirements::css($cdnBaseURL . '/main.css');
-            Requirements::javascript($cdnBaseURL . '/bundle.js', ['async', 'defer']);
+            Requirements::javascript($cdnBaseURL . '/bundle.js', ['defer']);
         } else {
             Requirements::css('https://jobs.recruitmentvc.com/cdn/main.css');
-            Requirements::javascript('https://jobs.recruitmentvc.com/cdn/bundle.js', ['async', 'defer']);
+            Requirements::javascript('https://jobs.recruitmentvc.com/cdn/bundle.js', ['defer']);
         }
 
-        Requirements::javascript('https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit', ['async', 'defer']);
+        Requirements::javascript('https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit', ['defer']);
     }
 
     /**

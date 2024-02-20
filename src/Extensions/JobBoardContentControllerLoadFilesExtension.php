@@ -35,16 +35,16 @@ class JobBoardContentControllerLoadFilesExtension extends Extension
             }
 
             Requirements::css(sprintf('http://localhost:%s/main.css', $port), '', ['defer' => true]);
-            Requirements::javascript(sprintf('http://localhost:%s/bundle.js', $port), ['type' => false, 'async' => true, 'defer' => true]);
+            Requirements::javascript(sprintf('http://localhost:%s/bundle.js', $port), ['type' => false, 'async' => false, 'defer' => true]);
         } elseif (Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'alternate_cdn') !== null) {
             $cdnBaseURL = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'alternate_cdn');
             Requirements::css($cdnBaseURL . '/main.css', '', ['defer' => true]);
-            Requirements::javascript($cdnBaseURL . '/bundle.js', ['type' => false, 'async' => true, 'defer' => true]);
+            Requirements::javascript($cdnBaseURL . '/bundle.js', ['type' => false, 'async' => false, 'defer' => true]);
         } else {
             Requirements::css('https://jobs.recruitmentvc.com/cdn/main.css', '', ['defer' => true]);
-            Requirements::javascript('https://jobs.recruitmentvc.com/cdn/bundle.js', ['type' => false, 'async' => true, 'defer' => true]);
+            Requirements::javascript('https://jobs.recruitmentvc.com/cdn/bundle.js', ['type' => false, 'async' => false, 'defer' => true]);
         }
 
-        Requirements::javascript('https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit', ['type' => false, 'async' => true, 'defer' => true]);
+        Requirements::javascript('https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit', ['type' => false, 'async' => false, 'defer' => true]);
     }
 }
