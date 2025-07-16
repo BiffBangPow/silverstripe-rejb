@@ -45,6 +45,8 @@ class JobBoardContentControllerLoadFilesExtension extends Extension
             Requirements::javascript('https://jobs.recruitmentvc.com/cdn/bundle.js', ['type' => false, 'async' => false, 'defer' => true]);
         }
 
-        Requirements::javascript('https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit', ['type' => false, 'async' => false, 'defer' => true]);
+        if (Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'has_manual_apply') === true) {
+            Requirements::javascript('https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit', ['defer']);
+        }
     }
 }
