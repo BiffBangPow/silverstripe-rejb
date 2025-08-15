@@ -1,1 +1,1 @@
-<div id="REJB-job-board-$ID" class="REJB-job-board"></div>
+<div id="REJB-job-board-$ID" class="REJB-job-board <% if $REJBPageType %>REJB-job-board-$REJBPageType<% end_if %>"></div>
