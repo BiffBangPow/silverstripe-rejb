@@ -30,6 +30,8 @@ class JobBoardPageController extends PageController
         $jobBoardURLPath = Config::inst()->get('BiffBangPow\SilverStripeREJB\SilverstripeREJB', 'job_board_url_path');
         $absoluteLink = Director::absoluteBaseURL() . $request->getURL();
 
+        $rejbPageType = 'REJBIndex';
+
         if ($request->getURL() !== ltrim($jobBoardURLPath, '/')) {
             $urlParts = explode('/', $request->getURL());
 
@@ -40,6 +42,7 @@ class JobBoardPageController extends PageController
             $title = str_replace('-', ' ', end($urlParts));
             $titleString = new Stringy($title);
             $metaTitle = $titleString->titleize()->__toString();
+            $rejbPageType = 'REJBJob';
         }
 
         $siteConfig = SiteConfig::current_site_config();
@@ -54,6 +57,7 @@ class JobBoardPageController extends PageController
                 'Title'           => $metaTitle,
                 'MetaDescription' => $siteConfig->JobBoardShareDescription,
                 'AbsoluteLink'    => $absoluteLink,
+                'REJBPageType'    => $rejbPageType,
             ]
         );
     }
