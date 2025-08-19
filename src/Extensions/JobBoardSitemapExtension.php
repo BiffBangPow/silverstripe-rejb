@@ -17,7 +17,7 @@ class JobBoardSitemapExtension extends DataExtension {
         $now->format('YYYY-MM-DD');
 
         $allJobsURL = sprintf(
-            '%s/api/brands/%s/jobs?expiryDate[strictly_after]=%s',
+            '%s/api/brands/%s/jobs?itemsPerPage=1000&expiryDate[strictly_after]=%s',
             $apiBaseURL,
             $brandSlug,
             $now->format('Y-m-d')
@@ -31,7 +31,7 @@ class JobBoardSitemapExtension extends DataExtension {
 
         foreach ($jobs as $job) {
 
-            $jobURL = rtrim(Director::absoluteBaseURL(),'/') .$jobBoardURLPath . '/job/' . ltrim($job['slug'],$brandSlug . '-');
+            $jobURL = rtrim(Director::absoluteBaseURL(),'/') .$jobBoardURLPath . '/job/' . substr($job['slug'], strlen($brandSlug . '-'));
             $items->push(new ArrayData(array(
                 'AbsoluteLink' => $jobURL,
                 'ChangeFrequency' => 'weekly',
