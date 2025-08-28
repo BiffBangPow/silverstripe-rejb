@@ -36,7 +36,7 @@ class JobBoardPageController extends PageController
             $urlParts = explode('/', $request->getURL());
 
             if ($this->checkJobExists(end($urlParts)) !== true) {
-                return $this->httpError(404);
+                return $this->redirect($jobBoardURLPath, 301);
             }
 
             $title = str_replace('-', ' ', end($urlParts));
